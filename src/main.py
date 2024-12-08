@@ -60,7 +60,9 @@ async def query_with_context(query: str, k: int = 3):
 Given the context above, please answer the following question: {query}"""
 
         # Generate response using OpenAI
-        response = llm_backend.generate(prompt=prompt, system_prompt=SYSTEM_PROMPT)
+        response = await llm_backend.generate(
+            prompt=prompt, system_prompt=SYSTEM_PROMPT
+        )
 
         return {
             "response": response,
