@@ -1,9 +1,12 @@
+import os
+from pathlib import Path
+
 import chromadb
 
 
 class VectorStore:
     def __init__(self):
-        self.client = chromadb.Client()
+        self.client = chromadb.PersistentClient(path=str(Path(os.getcwd(), "data")))
         self.collection = self.client.get_or_create_collection("documents")
 
     def add_documents(self, texts, metadatas, ids):
